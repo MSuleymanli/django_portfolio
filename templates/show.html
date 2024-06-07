@@ -5,20 +5,22 @@
 {% block body %}
 <div class="content bg-light p-5">
     <h1 class="text-center py-5">Show Page</h1>
-<ul>
-    {% for portfolio in portfolios %}
-    <li class="">
-        <p>Name: <b> {{ portfolio.name }} </b></p> 
-        <p> Surname:<b> {{ portfolio.surname }}</b></p>
-        <p> Age: <b> {{ portfolio.age }}</b></p>
-        <p> City: <b> {{ portfolio.city }}</b></p>
-        <p> University:<b> {{ portfolio.university }}</b></p>
-        <p> Hobby:<b> {{ portfolio.hobby }}</b></p>
-        <p> Skills:<b> {{ portfolio.skills }}</b></p>
-    </li>
-    <hr><hr>
-    {% endfor %}
-</ul>
-<a class="btn btn-success" href="{% url 'home' %}">Add</a>
-{% endblock body %}
+    <ul>
+        {% for portfolio in portfolios %}
+        <li class="">
+            <p>Name: <b>{{ portfolio.name }}</b></p>
+            <p>Surname: <b>{{ portfolio.surname }}</b></p>
+            <p>Age: <b>{{ portfolio.age }}</b></p>
+            <p>City: <b>{{ portfolio.city }}</b></p>
+            <p>University: <b>{{ portfolio.university }}</b></p>
+            <p>Hobby: <b>{{ portfolio.hobby }}</b></p>
+            <p>Skills: <b>{{ portfolio.skills }}</b></p>
+            <p>Work: <b>{{ portfolio.work }}</b></p>
+            <a class="btn btn-success" href="{% url 'download_pdf' portfolio.pk %}">PDF download</a>
+            <hr><hr>
+        </li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-success" href="{% url 'home' %}">Add</a>
 </div>
+{% endblock %}

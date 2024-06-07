@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin # type: ignore
 from django.urls import path # type: ignore
+from portfolio import views
 from portfolio.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",home_view,name="home"),
-    path("show",show_view,name="show")
+    path("show",show_view,name="show"),    
+    path('download/<int:pk>/', views.download_pdf, name='download_pdf'),
 ]
