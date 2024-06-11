@@ -18,9 +18,16 @@ from django.contrib import admin # type: ignore
 from django.urls import path # type: ignore
 from portfolio import views
 from portfolio.views import *
+from django.conf.urls.i18n import i18n_patterns # type: ignore
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",home_view,name="home"),
     path("show",show_view,name="show"),    
     path('download/<int:pk>/', views.download_pdf, name='download_pdf'),
+    path("contact", views.contact_show, name="contact")
+]
+
+urlpatterns = [
+    *i18n_patterns(*urlpatterns, prefix_default_language=False),
+    path("set-language/<str:language>", views.set_language, name="set-language"),
 ]

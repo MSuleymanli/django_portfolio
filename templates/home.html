@@ -1,18 +1,31 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}Home{% endblock title %}
 
 {% block body %}
+
+<div class="container">
+    <div class="navbar">
+        <li class="flags">
+            {% if request.LANGUAGE_CODE == 'az' %}
+            <a href="{% url 'set-language' 'en' %}">EN</a>
+            {% else %}
+            <a href="{% url 'set-language' 'az' %}">AZ</a>
+            {% endif %}
+        </li>
+    </div>
+
 <div class="content bg-light">
-<h1 class="text-center py-5">Home Page</h1>
+<h1 class="text-center py-5">{% trans 'Home Page' %}</h1>
 <form method="post">
     <div class="d-grid gap-3 p-2">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="form-control btn btn-primary">Submit</button>
-</div>
+    </div>
+    <a class="form-control btn btn-primary" href="{% url 'contact' %}">SEND EMAIL</a>
 </form>
-
 </div>
 <hr>
 {% endblock body %}
